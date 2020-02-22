@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.nav-shadow{
+  box-shadow: 0 0 30px 0 rgba(43,86,112,.25);
+}
+.footer{
+  height: 5rem;
+  box-shadow: 0 0 30px 0 rgba(43,86,112,.25);
+}
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
