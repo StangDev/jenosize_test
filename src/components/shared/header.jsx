@@ -16,7 +16,6 @@ import { connect } from 'react-redux'
 import { setPlace } from '../../redux/stores'
 
 const Header = (props) => {
- 
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -25,6 +24,7 @@ const Header = (props) => {
       props.setPlace(e.target.value)
     }
   }
+console.log(props);
 
   return (
     <div>
@@ -43,6 +43,11 @@ const Header = (props) => {
                 <NavLink>Math24</NavLink>
               </Link>
             </NavItem>
+            <NavItem>
+              <Link href="/JonosizeMap/" as="/JonosizeMap">
+                <NavLink>Jenosize Map</NavLink>
+              </Link>
+            </NavItem>
           </Nav>
           <FormGroup>
         <Input
@@ -51,6 +56,8 @@ const Header = (props) => {
           id="Search"
           placeholder="search"
           onKeyDown={_handleKeyDown}
+          // value={keyword}
+          // onChange={(e) => keyword({keyword:e.target.value}) }
         />
       </FormGroup>
         </Collapse>
@@ -58,7 +65,10 @@ const Header = (props) => {
     </div>
   );
 }
+const mapStateToProps = (state) => ({
+  dataInput: state.input
+})
 const mapDispatchToProps = dispatch => ({
   setPlace: bindActionCreators(setPlace, dispatch)
 })
-export default connect(null,mapDispatchToProps)(Header)
+export default connect(mapStateToProps,mapDispatchToProps)(Header)

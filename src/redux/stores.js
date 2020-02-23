@@ -3,7 +3,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware from 'redux-thunk'
 import { getPlaceGoogleService ,getTestService} from '../service'
 const initialPlace = {
-  data: []
+  data: [],
+  input:""
 }
 
 export const actionTypes = {
@@ -15,7 +16,7 @@ export const actionTypes = {
 export const reducer = (state = initialPlace, action) => {
   switch (action.type) {
     case actionTypes.SET_PLACE:
-      return Object.assign({}, state, { data: action.dataPlace })
+      return Object.assign({}, state, { data: action.dataPlace,input:action.input })
     case actionTypes.CLEAR_PLACE:
         return Object.assign({}, state, { data: [] })
     default: return state
@@ -24,17 +25,14 @@ export const reducer = (state = initialPlace, action) => {
 
 // ACTIONS
 export const setPlace = playload => dispatch => {
-  console.log("playload: "+playload);
-  const dataPlace = getPlaceGoogleService().then(data => {
+  getPlaceGoogleService(playload).then((data) => {
     console.log(data);
     
-    return data
-  })
-  
-  // return dispatch({ 
-  //   type: actionTypes.SET_PLACE,
-  //   dataPlace
-  // })
+    return dispatch({ 
+      type: actionTypes.SET_PLACE,
+      dataPlace:data.results
+    })
+  });
 }
 
 export const clearPlace = () => dispatch => {

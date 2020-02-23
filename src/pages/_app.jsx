@@ -6,6 +6,7 @@ import {initStore} from '../redux/stores'
 import Layout from '../components/shared/Layout'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/index.css';
+import '../styles/card.css';
 
 class MyApp extends App {
 render () {
